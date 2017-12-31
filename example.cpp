@@ -8,7 +8,7 @@ class ExampleBehaviour : public CoroBehaviour
 public:
     Enumerator TaskA()
     {
-        return [=](CoroutinePush& YieldReturn)
+        return [=](CoroPush& YieldReturn)
         {
             std::cout << "TaskA 1\n";
             YieldReturn(nullptr);
@@ -19,7 +19,7 @@ public:
 
     Enumerator TaskB()
     {
-        return [=](CoroutinePush& YieldReturn)
+        return [=](CoroPush& YieldReturn)
         {
             std::cout << "TaskB 1\n";
             YieldReturn(new WaitForSeconds(1.0f));
@@ -30,7 +30,7 @@ public:
     
     Enumerator TaskC(std::string Param1, float Param2)
     {
-        return [=](CoroutinePush& YieldReturn)
+        return [=](CoroPush& YieldReturn)
         {
             std::cout << "TaskC 1 " << Param1 << "\n";
             YieldReturn(StartCoroutine(TaskA()));
@@ -42,7 +42,7 @@ public:
 
     Enumerator TaskD(std::string Param1, float Param2)
     {
-        return [=](CoroutinePush& YieldReturn)
+        return [=](CoroPush& YieldReturn)
         {
             std::cout << "TaskD 1 " << Param1 << "\n";
             YieldReturn(new WaitForSeconds(Param2));

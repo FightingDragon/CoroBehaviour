@@ -5,10 +5,11 @@
 #include <boost/coroutine2/all.hpp>
 #include <set>
 
-using CoroutinePull = boost::coroutines2::coroutine<class Coroutine*>::pull_type;
-using CoroutinePush = boost::coroutines2::coroutine<class Coroutine*>::push_type;
-using CoroutineSet = std::set<Coroutine*>;
-using Enumerator = std::function<void (CoroutinePush& YieldReturn)>;
+using CoroBoost = boost::coroutines2::coroutine<class Coroutine*>;
+using CoroPull = CoroBoost::pull_type;
+using CoroPush = CoroBoost::push_type;
+using CoroSet = std::set<Coroutine*>;
+using Enumerator = std::function<void (CoroPush& YieldReturn)>;
 
 class CoroBehaviour
 {
@@ -16,7 +17,7 @@ public:
     virtual ~CoroBehaviour();
     
 private:
-    CoroutineSet Coroutines;
+    CoroSet Coroutines;
     
     void PushYieldReturn(Coroutine* CoroutinePtr);
     

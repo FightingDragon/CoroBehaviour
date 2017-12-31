@@ -1,12 +1,12 @@
 #include "CoroBehaviour.h"
 
-class CoroutineInternal : public Coroutine
+class CoroInternal : public Coroutine
 {
 private:
-    CoroutinePull Pull;
+    CoroPull Pull;
     
 public:
-    CoroutineInternal(CoroutinePull& InPull) : Pull(std::move(InPull)) { }
+    CoroInternal(CoroPull& InPull) : Pull(std::move(InPull)) { }
     
 protected:
     virtual void Tick(float DeltaTime) override { Pull(); }
@@ -36,10 +36,10 @@ void CoroBehaviour::PushYieldReturn(Coroutine* CoroutinePtr)
 
 Coroutine* CoroBehaviour::StartCoroutine(Enumerator&& Enumerator)
 {
-    CoroutinePull Pull(Enumerator);
+    CoroPull Pull(Enumerator);
     if (Pull)
     {
-        Coroutine* CoroutinePtr = new CoroutineInternal(Pull);
+        Coroutine* CoroutinePtr = new CoroInternal(Pull);
         Coroutines.insert(CoroutinePtr);
         PushYieldReturn(CoroutinePtr);
         return CoroutinePtr;
@@ -79,7 +79,7 @@ void CoroBehaviour::StopAllCoroutines()
 
 void CoroBehaviour::TickCoroutines(float DeltaTime)
 {
-    CoroutineSet Copies = Coroutines;
+    CoroSet Copies = Coroutines;
     for (Coroutine* It : Copies)
     {
         while (true)
