@@ -53,7 +53,7 @@ class ExampleClass : public CoroBehaviour
         StartCoroutine(coroutineA());
     }
 
-    Enumerator coroutineA()
+    CoroEnumerator coroutineA()
     {
         return [=](CoroPush& YieldReturn)
         {
@@ -65,7 +65,7 @@ class ExampleClass : public CoroBehaviour
         };
     }
 
-    Enumerator coroutineB()
+    CoroEnumerator coroutineB()
     {
         return [=](CoroPush& YieldReturn)
         {

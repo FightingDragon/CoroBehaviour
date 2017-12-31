@@ -9,7 +9,7 @@ using CoroBoost = boost::coroutines2::coroutine<class Coroutine*>;
 using CoroPull = CoroBoost::pull_type;
 using CoroPush = CoroBoost::push_type;
 using CoroSet = std::set<Coroutine*>;
-using Enumerator = std::function<void (CoroPush& YieldReturn)>;
+using CoroEnumerator = std::function<void (CoroPush&)>;
 
 class CoroBehaviour
 {
@@ -22,7 +22,7 @@ private:
     void PushYieldReturn(Coroutine* CoroutinePtr);
     
 public:
-    Coroutine* StartCoroutine(Enumerator&& Enumerator);
+    Coroutine* StartCoroutine(CoroEnumerator Enumerator);
     void StopCoroutine(Coroutine* CoroutinePtr);
     void StopAllCoroutines();
     

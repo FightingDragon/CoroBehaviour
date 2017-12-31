@@ -6,7 +6,7 @@
 class ExampleBehaviour : public CoroBehaviour
 {
 public:
-    Enumerator TaskA()
+    CoroEnumerator TaskA()
     {
         return [=](CoroPush& YieldReturn)
         {
@@ -17,7 +17,7 @@ public:
         };
     }
 
-    Enumerator TaskB()
+    CoroEnumerator TaskB()
     {
         return [=](CoroPush& YieldReturn)
         {
@@ -28,7 +28,7 @@ public:
         };
     }
     
-    Enumerator TaskC(std::string Param1, float Param2)
+    CoroEnumerator TaskC(std::string Param1, float Param2)
     {
         return [=](CoroPush& YieldReturn)
         {
@@ -40,7 +40,7 @@ public:
         };
     }
 
-    Enumerator TaskD(std::string Param1, float Param2)
+    CoroEnumerator TaskD(std::string Param1, float Param2)
     {
         return [=](CoroPush& YieldReturn)
         {

@@ -34,7 +34,7 @@ void CoroBehaviour::PushYieldReturn(Coroutine* CoroutinePtr)
     }
 }
 
-Coroutine* CoroBehaviour::StartCoroutine(Enumerator&& Enumerator)
+Coroutine* CoroBehaviour::StartCoroutine(CoroEnumerator Enumerator)
 {
     CoroPull Pull(Enumerator);
     if (Pull)
