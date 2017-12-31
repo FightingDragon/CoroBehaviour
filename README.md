@@ -55,7 +55,7 @@ class ExampleClass : public CoroBehaviour
 
     Enumerator coroutineA()
     {
-        return [=](CoroutinePush& YieldReturn)
+        return [=](CoroPush& YieldReturn)
         {
             // wait for 1 second
             std::cout << "coroutineA created";
@@ -67,7 +67,7 @@ class ExampleClass : public CoroBehaviour
 
     Enumerator coroutineB()
     {
-        return [=](CoroutinePush& YieldReturn)
+        return [=](CoroPush& YieldReturn)
         {
             std::cout << "coroutineB created";
             YieldReturn(new WaitForSeconds(2.5f));
